@@ -30,4 +30,10 @@ public class ItemsHandler {
         return itemMono.flatMap(item -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(fromObject(item)))
                 .switchIfEmpty(notFound);
     }
+
+    public Mono<ServerResponse> createItem(ServerRequest serverRequest) {
+        Mono<Item> itemToBeInserted = serverRequest.bodyToMono(Item.class);
+        return itemToBeInserted.flatMap(item -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(itemReactiveRepository.save(item), Item.class));
+    }
 }
