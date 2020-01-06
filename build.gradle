@@ -1,13 +1,13 @@
 buildscript {
-	ext {
-		springBootVersion = '2.1.1.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'java'
@@ -20,15 +20,19 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 
+test {
+    exclude 'com/learnreactivespring/fluxandmonoplayground/**'
+}
+
 dependencies {
-//	implementation('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
-	implementation('org.springframework.boot:spring-boot-starter-webflux')
-	compileOnly('org.projectlombok:lombok')
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
-	testImplementation('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
-	testImplementation('io.projectreactor:reactor-test')
+    implementation('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
+    implementation('org.springframework.boot:spring-boot-starter-webflux')
+    compileOnly('org.projectlombok:lombok')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+    testImplementation('io.projectreactor:reactor-test')
 }
