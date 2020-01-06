@@ -1,4 +1,4 @@
-package com.learnreactivespring.fluxandmonoplayground.controller;
+package com.learnreactivespring.controller;
 
 import org.junit.Assert;
 import org.junit.Test;
