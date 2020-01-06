@@ -36,4 +36,10 @@ public class ItemsHandler {
         return itemToBeInserted.flatMap(item -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(itemReactiveRepository.save(item), Item.class));
     }
+
+    public Mono<ServerResponse> deleteItem(ServerRequest serverRequest) {
+        String id = serverRequest.pathVariable("id");
+        Mono<Void> deleteItem = itemReactiveRepository.deleteById(id);
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(deleteItem, Void.class);
+    }
 }
